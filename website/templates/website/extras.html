@@ -1,0 +1,79 @@
+{% extends "website/index.html" %}
+{% load i18n %}
+{% block content %}
+<body class="bg-light">
+<div class="container-lg pt-4 mt-1 ">
+    <h1 class="display-3">Extracurricular / Cocurricular </h1>
+
+    <form enctype="multipart/form-data" action="" method="post">
+        {% csrf_token %}
+
+        <div class="form-group pt-4">
+
+            <label for="title">Event title: </label>
+            <input id="title" class="form-control" type="text" name="title" value="{{ current_title }}" required>
+
+        </div>
+        <div class="form-group pt-2">
+            <label for="organiser">Event Organiser: </label>
+            <input id="organiser" class="form-control" type="text" name="organiser" value="{{ current_organiser }}"
+                required>
+        </div>
+
+        <div class="form-group pt-2 ">
+            <label for="date"> Event date: </label>
+            <input id="date" class="form-control" type="date" name="date" value="{{ current_date }}" required>
+        </div>
+
+        <div class="form-group pt-2">
+            <label for="event_type"> Event type: </label>
+            <select name="event_type" class="form-control" id="event_type">
+                <option value="Sports">Sports</option>
+                <option value="Arts/Cultural">Arts/Cultural</option>
+
+            </select>
+        </div>
+
+        <div class="row pt-3">
+
+            <div class=" form-group col-sm">
+                <label for="event_level"> Level of Event: </label>
+                <select name="event_level" class="form-control" id="event_level">
+                    <option value="International">International</option>
+                    <option value="National">National</option>
+                    <option value="State">State</option>
+                    <option value="Zonal">Zonal</option>
+                    <option value="College level">College level</option>
+                </select>
+            </div>
+
+            <div class=" form-group col-sm">
+                <label for="position"> Position: </label>
+                <select name="position" class="form-control" id="position">
+                    <option value="First">First</option>
+                    <option value="Second">Second</option>
+                    <option value="Third">Third</option>
+                    <option value="Special Mention">Special Mention</option>
+                    <option value="Participation only">Participation only</option>
+                   
+                </select>
+            </div>
+
+        </div>
+
+
+
+
+        <div class="form-group pt-4">
+            <label for="files">File: </label>
+            <input id="file" accept=".pdf"  type="file" name="files" value="{{ current_files }}" required>
+        </div>
+
+        <div class="pt-4">
+            <button class="btn btn-primary" type="submit">Submit</button>
+        </div>
+    </form>
+
+</div>
+</body>
+{% endblock %}

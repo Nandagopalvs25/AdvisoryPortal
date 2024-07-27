@@ -1,0 +1,50 @@
+
+
+{% extends "website/index.html" %}
+{% load i18n %}
+{% block content %}
+
+<body class="bg-light">
+<div class="container-lg pt-4 mt-1 ">
+    <h1 class="display-3">Workshops</h1>
+
+    <form enctype="multipart/form-data" action="" method="post">
+        {% csrf_token %}
+
+        <div class="form-group pt-4">
+
+            <label for="name">Event name: </label>
+            <input id="name" class="form-control" type="text" name="name" value="{{ current_name }}" required>
+
+        </div>
+        <div class="form-group pt-2">
+            <label for="organiser">Event Organiser: </label>
+            <input id="organiser" class="form-control" type="text" name="organiser" value="{{ current_organiser }}"
+                required>
+        </div>
+
+        <div class="form-group pt-2 ">
+            <label for="date"> Event date: </label>
+            <input id="date" class="form-control" type="date" name="date" value="{{ current_date }}" required>
+        </div>
+
+        <div class="form-group pt-2">
+            <label for="days">No of days: </label>
+            <input id="days" class="form-control" type="number" name="days" value="{{ current_days }}" required>
+        </div>
+
+ 
+
+        <div class="form-group pt-4">
+            <label for="files">File: </label>
+            <input id="file" accept=".pdf"  type="file" name="files" value="{{ current_files }}" required>
+        </div>
+
+        <div class="pt-4">
+            <button class="btn btn-primary" type="submit">Submit</button>
+        </div>
+    </form>
+
+</div>
+</body>
+{% endblock %}

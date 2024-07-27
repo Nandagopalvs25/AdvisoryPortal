@@ -1,0 +1,70 @@
+{% extends "website/index.html" %}
+{% load i18n %}
+{% block content %}
+
+
+
+<body class="bg-light">
+
+  <div class="container">
+
+    <div class="p5 text-center">
+      <h1 class="display-1" >Certificates</h1>
+    </div>
+
+    <div class="container pt-5">
+
+
+      <div class="row row-cols-1 row-cols-md-2 g-4">
+        <div class="col">
+          <div class="card">
+            <div class="card-body text-center">
+              <i class=" fa-solid fa-book-open fa-4x "> </i>
+              <h5 class="card-title pt-1">MOOC</h5>
+
+              
+              <a href="./mooc" class=" stretched-link"></a>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card">
+
+
+            <div class="card-body text-center">
+              <i class="fa-solid fa-briefcase fa-4x"></i>
+              <h5 class="card-title pt-1">Internship</h5>
+
+
+              <a href="./internships" class=" stretched-link"></a>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card">
+
+
+            <div class="card-body text-center">
+              <i class="fa-solid fa-medal fa-5x"></i>
+              <h5 class="card-title pt-1">Extra curriculur</h5>
+
+              <a href="./extrac" class=" stretched-link"></a>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card">
+
+            <div class="card-body text-center">
+              <i class="fa-solid fa-laptop-code fa-5x"></i>
+              <h5 class="card-title pt-1">Workshop</h5>
+
+              <a href="./workshops" class=" stretched-link"></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</body>
+
+{% endblock %}

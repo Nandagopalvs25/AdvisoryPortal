@@ -1,0 +1,118 @@
+{% extends "website/index.html" %}
+{% load i18n %}
+{% block content %}
+
+
+
+<body class="bg-light">
+
+  <div class="pt-3 text-center ">
+    <h1 class="display-1">Uploaded Documents</h1>
+  </div>
+
+
+
+  <div class="row  pt-5 m-3">
+    <div class="col-md ">
+      <div class="pb-2">
+      <h2> > MOOC </h2>
+    </div>
+      {% for mc in mooc %}
+
+      <div class="pt-2 card  mb-4 " style="width: 18rem;">
+        <div class="card-header">
+          <h5> {{ mc.course_title}}</h5>
+        </div>
+        <div class="card-body">
+
+
+          <p class="card-text"> Course type: {{ mc.course_type }}</p>
+          <p class="card-text">Start date: {{ mc.start_date }}</p>
+          <p class="card-text">End date: {{ mc.end_date }}</p>
+          <a href={{ mc.file_url }} class=" stretched-link"></a>
+        </div>
+      </div>
+
+      {% endfor %}
+    </div>
+
+    <div class="col-md">
+      <div class="pb-2">
+      <h2> > Internships</h2>
+    </div>
+      {% for mc in intern %}
+
+      <div class="pt-2 card  mb-4 box-shadow" style="width: 18rem;">
+        <div class="card-header">
+          <h5> {{ mc.name }} </h5>
+        </div>
+        <div class="card-body">
+
+          <p class="card-text"> Company: {{ mc.company}}</p>
+          <p class="card-text">No of days: {{ mc.no_of_days}}</p>
+          <p class="card-text">Start date: {{ mc.start_date }}</p>
+          <p class="card-text">End date: {{ mc.end_date }}</p>
+
+          <a href={{ mc.file_url }} class=" stretched-link"></a>
+        </div>
+      </div>
+
+      {% endfor %}
+    </div>
+
+    <div class="col-md">
+      <div class="pb-2">
+      <h2> > Workshops</h2>
+    </div>
+      {% for mc in workshops %}
+
+
+      <div class="pt-2 card mb-4 " style="width: 18rem;">
+        <div class="card-header">
+          <h5> {{ mc.name }} </h5>
+
+        </div>
+        <div class="card-body">
+
+          <p class="card-text">No of days: {{ mc.no_of_days}}</p>
+          <p class="card-text">Organiser: {{ mc.organiser}}</p>
+          <p class="card-text">Date: {{ mc.date }}</p>
+          <a href={{ mc.file_url }} class=" stretched-link"></a>
+        </div>
+      </div>
+
+      {% endfor %}
+    </div>
+
+    <div class="col-md">
+      <div class="pb-2">
+      <h2> > Extracurricular</h2>
+    </div>
+      {% for mc in extras %}
+
+      <div class="pt-2 card  mb-4 " style="width: 18rem;">
+        <div class="card-header">
+          <h5> {{ mc.event_title }}</h5>
+        </div>
+        <div class="card-body">
+
+          <p class="card-text">Organiser: {{ mc.event_organiser}}</p>
+          <p class="card-text">Event type: {{ mc.event_type}}</p>
+          <p class="card-text">Event date: {{ mc.event_date}}</p>
+          <p class="card-text">Event level: {{ mc.event_level}}</p>
+          <p class="card-text">Position: {{ mc.event_position}}</p>
+          <a href={{ mc.file_url }} class=" stretched-link"></a>
+        </div>
+      </div>
+
+      {% endfor %}
+    </div>
+
+
+  </div>
+
+
+
+
+</body>
+{% endblock %}

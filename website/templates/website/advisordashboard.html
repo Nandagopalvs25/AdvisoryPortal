@@ -1,0 +1,66 @@
+{% extends "website/index.html" %}
+{% load i18n %}
+{% block content %}
+
+
+<script src="https://kit.fontawesome.com/18b159aaad.js" crossorigin="anonymous"></script>
+<body class="bg-light">
+
+<div class="  container">
+
+    <div class="p-5 text-center">
+        <h1 class="display-1"> Advisor Dashboard</h1>
+        </div>
+        
+        <div class="container pt-3">
+        <div class="row row-cols-1 row-cols-md-2 g-4">
+            <div class="col">
+              <div class="card">
+          
+          
+                <div class="card-body text-center">
+                  <i class="fa-regular fa-rectangle-list fa-5x"></i>
+                  <h5 class="card-title pt-1"> Students</h5>
+                  
+                  <a href="/studentslist/" class=" stretched-link"></a>
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              <div class="card">
+            
+          
+                <div class="card-body text-center">
+                  <i class="fa-solid fa-user fa-5x"></i>
+                  <h5 class="card-title pt-1">Profile</h5>
+            
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              <div class="card">
+                
+          
+                <div class="card-body text-center">
+                  <i class="fa-regular fa-square-check fa-5x"></i>
+                  <h5 class="card-title pt-1">Approvals</h5>
+                  <a href="/uploads/" class=" stretched-link"></a>
+                 
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              <div class="card">
+               
+                <div class="card-body text-center">
+                  <i class="fa-solid fa-envelope fa-5x"></i>
+                  <h5 class="card-title pt-1">Notifications</h5>
+                 
+                </div>
+              </div>
+            </div>
+          </div>
+          </div>
+</body>
+
+{% endblock %}

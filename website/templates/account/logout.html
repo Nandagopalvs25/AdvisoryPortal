@@ -1,0 +1,37 @@
+
+{% extends "website/index.html" %}
+
+
+{% block content %}
+
+
+<body>
+   <div class="container-lg pt-5">
+    <h1>
+        Sign Out
+    </h1>
+
+
+    <p>Are you sure you want to sign out?</p>
+
+
+    
+    <form method="post" class="form-group" action="/auth/logout/">
+
+     {% csrf_token %}
+
+        <button   class="btn btn-primary" type="submit">
+            Sign Out
+        </button>
+    </form>
+    </div>
+
+
+
+
+
+
+
+</body>
+
+{% endblock %}
