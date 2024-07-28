@@ -33,7 +33,7 @@ def certificates(request):
 
 @login_required
 def studentsList(request):
-    students=CustomUser.objects.filter(is_advisor=False)
+    students=CustomUser.objects.filter(is_advisor=False).filter(department=request.user.department)
     return render(request, "website/studentslist.html",{'students':students})
 
 @login_required

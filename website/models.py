@@ -26,6 +26,12 @@ class CustomUser(AbstractUser):
         ('S', 'Student'),
         ('A', 'Advisor'),
     )
+    DEPARTMENT=(
+         ('ECE','Eletronics and Communication'),
+         ('CSE','Computer Science'),
+         ('MH','Mechanical Engineering')
+    )
+    department = models.CharField(max_length=6, choices=DEPARTMENT,default="ECE")
     gender = models.CharField(max_length=1, choices=GENDER_CHOICES,default="M")
     batch = models.ForeignKey(Batches, on_delete=models.CASCADE,null=True)
     role = models.CharField(max_length=7,choices=ROLES,default="S")
