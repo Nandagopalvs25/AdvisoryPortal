@@ -1,4 +1,4 @@
-from django.shortcuts import render,HttpResponseRedirect,HttpResponse
+from django.shortcuts import render,HttpResponseRedirect,HttpResponse,get_object_or_404
 from .models import Internships,Extracurriculur,Mooc,Workshops,CustomUser
 from googleapiclient.discovery import build
 from google.oauth2 import service_account
@@ -155,5 +155,57 @@ def upload(files,name,folder_id):
     file = service.files().create(body=file_metadata, media_body=media,fields='id').execute()
     return file.get("id")
 
+@login_required
+def deleteMooc(request,id):
+    if request.method =="GET":
+        obj = get_object_or_404(Mooc, id = id)
+        # delete object
+        obj.delete()
+        # after deleting redirect to 
+        # home page
+        messages.success(request, "Deleted Succesfully.")
+        return HttpResponseRedirect("/uploads/")
+ 
+    return render(request, "website/uploads.html")
+    
+@login_required
+def deleteExtrac(request,id):
+    if request.method =="GET":
+        obj = get_object_or_404(Extracurriculur, id = id)
+        # delete object
+        obj.delete()
+        # after deleting redirect to 
+        # home page
+        messages.success(request, "Deleted Succesfully.")
+        return HttpResponseRedirect("/uploads/")
+ 
+    return render(request, "website/uploads.html")
+    
+@login_required
+def deleteWorkshops(request,id):
+    if request.method =="GET":
+        obj = get_object_or_404(Workshops, id = id)
+        # delete object
+        obj.delete()
+        # after deleting redirect to 
+        # home page
+        messages.success(request, "Deleted Succesfully.")
+        return HttpResponseRedirect("/uploads/")
+ 
+    return render(request, "website/uploads.html")
+    
+@login_required
+def deleteIntern(request,id):
+    if request.method =="GET":
+        obj = get_object_or_404(Internships, id = id)
+        # delete object
+        obj.delete()
+        # after deleting redirect to 
+        # home page
+        messages.success(request, "Deleted Succesfully.")
+        return HttpResponseRedirect("/uploads/")
+ 
+    return render(request, "website/uploads.html")
+    
 
     
