@@ -1,4 +1,4 @@
-from django.shortcuts import render,HttpResponseRedirect,HttpResponse
+from django.shortcuts import render,HttpResponseRedirect,HttpResponse,get_object_or_404
 from .models import Internships,Extracurriculur,Mooc,Workshops,CustomUser
 from googleapiclient.discovery import build
 from google.oauth2 import service_account
@@ -33,7 +33,7 @@ def certificates(request):
 
 @login_required
 def studentsList(request):
-    students=CustomUser.objects.filter(is_advisor=False).filter(department=request.user.department)
+    students=CustomUser.objects.filter(is_advisor=False)
     return render(request, "website/studentslist.html",{'students':students})
 
 @login_required
@@ -55,7 +55,7 @@ def mooc(request):
         type=request.POST['type']
         start_date=request.POST['start_date']
         end_date=request.POST['end_date']
-        folder_id=request.user.batch.mooc_folder_url
+        folder_id=request.user.batch.gdrive_folder_url
 
         id =upload(request.FILES['files'].read(),request.user.admission_number,folder_id)
         url= "https://drive.google.com/file/d/{id}/preview".format(id=id)
@@ -155,5 +155,57 @@ def upload(files,name,folder_id):
     file = service.files().create(body=file_metadata, media_body=media,fields='id').execute()
     return file.get("id")
 
+@login_required
+def deleteMooc(request,id):
+    if request.method =="GET":
+        obj = get_object_or_404(Mooc, id = id)
+        # delete object
+        obj.delete()
+        # after deleting redirect to 
+        # home page
+        messages.success(request, "Deleted Succesfully.")
+        return HttpResponseRedirect("/uploads/")
+ 
+    return render(request, "website/uploads.html")
+    
+@login_required
+def deleteExtrac(request,id):
+    if request.method =="GET":
+        obj = get_object_or_404(Extracurriculur, id = id)
+        # delete object
+        obj.delete()
+        # after deleting redirect to 
+        # home page
+        messages.success(request, "Deleted Succesfully.")
+        return HttpResponseRedirect("/uploads/")
+ 
+    return render(request, "website/uploads.html")
+    
+@login_required
+def deleteWorkshops(request,id):
+    if request.method =="GET":
+        obj = get_object_or_404(Workshops, id = id)
+        # delete object
+        obj.delete()
+        # after deleting redirect to 
+        # home page
+        messages.success(request, "Deleted Succesfully.")
+        return HttpResponseRedirect("/uploads/")
+ 
+    return render(request, "website/uploads.html")
+    
+@login_required
+def deleteIntern(request,id):
+    if request.method =="GET":
+        obj = get_object_or_404(Internships, id = id)
+        # delete object
+        obj.delete()
+        # after deleting redirect to 
+        # home page
+        messages.success(request, "Deleted Succesfully.")
+        return HttpResponseRedirect("/uploads/")
+ 
+    return render(request, "website/uploads.html")
+    
 
     

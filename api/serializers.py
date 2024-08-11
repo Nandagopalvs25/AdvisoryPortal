@@ -1,5 +1,5 @@
 
-from website.models import CustomUser,Batches
+from website.models import CustomUser,Batch
 
 from rest_framework import serializers
 
@@ -7,8 +7,8 @@ from rest_framework import serializers
 
 class BatchSerializer(serializers.ModelSerializer):
     class Meta:
-        model=Batches
-        fields=('batch_code')
+        model=Batch
+        fields=('batch_id')
 
 
 class ListUserSerializer(serializers.ModelSerializer):

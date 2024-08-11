@@ -2,15 +2,30 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser
 
 
-class Batches(models.Model):
-     batch_code=models.CharField(max_length=15)
-     mooc_folder_url=models.CharField(max_length=300,blank=True)
-     workshop_folder_url=models.CharField(max_length=300,blank=True)
-     internship_folder_url=models.CharField(max_length=300,blank=True)
-     extracurriculur_folder_url=models.CharField(max_length=300,blank=True)
+
+class College(models.Model):
+     college_name=models.CharField(max_length=200)
+     college_address=models.CharField(max_length=350)
+
+     def __str__(self) -> str:
+          return self.college_name
+
+
+class Department(models.Model):
+     dept_name=models.CharField(max_length=150)
+     college = models.ForeignKey(College,related_name="college", on_delete=models.CASCADE,null=True)
+      
+     def __str__(self) -> str:
+          return self.dept_name
+
+
+class Batch(models.Model):
+     batch_id=models.CharField(max_length=15)
+     gdrive_folder_url=models.CharField(max_length=300,blank=True)
+     department = models.ForeignKey(Department,related_name="department", on_delete=models.CASCADE,null=True)
 
      def __str__(self):
-        return self.batch_code
+        return self.batch_id
     
 
 class CustomUser(AbstractUser):
@@ -26,14 +41,9 @@ class CustomUser(AbstractUser):
         ('S', 'Student'),
         ('A', 'Advisor'),
     )
-    DEPARTMENT=(
-         ('ECE','Eletronics and Communication'),
-         ('CSE','Computer Science'),
-         ('MH','Mechanical Engineering')
-    )
-    department = models.CharField(max_length=6, choices=DEPARTMENT,default="ECE")
     gender = models.CharField(max_length=1, choices=GENDER_CHOICES,default="M")
-    batch = models.ForeignKey(Batches, on_delete=models.CASCADE,null=True)
+    batch = models.ForeignKey(Batch, on_delete=models.CASCADE,null=True)
+    department=models.OneToOneField(Department,on_delete=models.CASCADE,null=True)
     role = models.CharField(max_length=7,choices=ROLES,default="S")
     phone_no=models.CharField(null=True,blank=True,max_length=20);
     guardian=models.CharField(max_length=40,null=True,blank=True);
@@ -99,6 +109,7 @@ class Workshops(models.Model):
        
      def __str__(self):
           return self.name
+
 
 
 
