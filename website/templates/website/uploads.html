@@ -30,7 +30,8 @@
           <p class="card-text">Start date: {{ mc.start_date }}</p>
           <p class="card-text">End date: {{ mc.end_date }}</p>
           <p class="card-text">ID: {{ mc.id }}</p>
-          <a href={{ mc.file_url }} class=" stretched-link"></a>
+          <a href={{ mc.file_url }} class="btn btn-primary btn-lg active" role="button"  >view</a>
+          <a href="mooc/delete/{{mc.id}}" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Delete</a>
         </div>
       </div>
 
@@ -54,7 +55,9 @@
           <p class="card-text">Start date: {{ mc.start_date }}</p>
           <p class="card-text">End date: {{ mc.end_date }}</p>
 
-          <a href={{ mc.file_url }} class=" stretched-link"></a>
+          <a href={{ mc.file_url }} class=" btn btn-primary btn-lg active" role="button">view</a>
+          <a href="intern/delete/{{mc.id}}" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Delete</a>
+
         </div>
       </div>
 
@@ -78,7 +81,8 @@
           <p class="card-text">No of days: {{ mc.no_of_days}}</p>
           <p class="card-text">Organiser: {{ mc.organiser}}</p>
           <p class="card-text">Date: {{ mc.date }}</p>
-          <a href={{ mc.file_url }} class=" stretched-link"></a>
+          <a href={{ mc.file_url }} class=" btn btn-primary btn-lg active" role="button">view</a>
+          <a href="workshop/delete/{{mc.id}}" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Delete</a>
         </div>
       </div>
 
@@ -102,7 +106,8 @@
           <p class="card-text">Event date: {{ mc.event_date}}</p>
           <p class="card-text">Event level: {{ mc.event_level}}</p>
           <p class="card-text">Position: {{ mc.event_position}}</p>
-          <a href={{ mc.file_url }} class=" stretched-link"></a>
+          <a href={{ mc.file_url }} class=" btn btn-primary btn-lg active" role="button">view</a>
+          <a href="extrac/delete/{{mc.id}}" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Delete</a>
         </div>
       </div>
 
