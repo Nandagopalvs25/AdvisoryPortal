@@ -1,66 +1,52 @@
-{% extends "website/index.html" %}
-{% load i18n %}
-{% block content %}
-
-
-<script src="https://kit.fontawesome.com/18b159aaad.js" crossorigin="anonymous"></script>
-<body class="bg-light">
-
-<div class="  container">
-
-    <div class="p-5 text-center">
-        <h1 class="display-1"> Advisor Dashboard</h1>
-        </div>
-        
-        <div class="container pt-3">
-        <div class="row row-cols-1 row-cols-md-2 g-4">
-            <div class="col">
-              <div class="card">
-          
-          
-                <div class="card-body text-center">
-                  <i class="fa-regular fa-rectangle-list fa-5x"></i>
-                  <h5 class="card-title pt-1"> Students</h5>
-                  
-                  <a href="/studentslist/" class=" stretched-link"></a>
+<!DOCTYPE html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link rel="stylesheet" type="text/css" href="advisordashboard.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header>
+    <img class="header" src="https://tkmce.ac.in/images/logo/header (1).png">
+  </header>
+  
+  <ul><li><a href=”#”>Overview</a></li>
+    <li><a href=”#”>Certificates</a></li>
+    <li><a href=”#”>Student Details</a></li>
+    <li><a href=”#”>Placement</a></li>
+    <li><a href=”#”>Training</a></li>
+    <li><a href=”#”>Events</a></li>
+    <li><a href=”#”>Surveys</a></li>
+    <li><a href=”#”>Report</a></li></ul>
+   <div class="box">
+     <main>
+        <section>
+            <h2>Upcoming Events</h2>
+            <div class="event-container">
+                <div class="event-card">
+                    <img src="#" alt="#">
+                    <h2>Lumeire'24 | July 01-02</h2>
+                    <p>Lumeire'24 is an Event of Project Expo with Drone Show conducted by Department of Electronics and Communications of TKM College of Engineering</p>
+                    <a href="#">Learn More</a>
                 </div>
-              </div>
-            </div>
-            <div class="col">
-              <div class="card">
-            
-          
-                <div class="card-body text-center">
-                  <i class="fa-solid fa-user fa-5x"></i>
-                  <h5 class="card-title pt-1">Profile</h5>
-            
+                <div class="event-card">
+                    <img src="#" alt="#">
+                    <h2>Mastering AI Series </h2>
+                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quibusdam ratione reprehenderit, praesentium quia explicabo odio minima unde di.</p>
+                    <a href="#">Learn More</a>
                 </div>
-              </div>
-            </div>
-            <div class="col">
-              <div class="card">
-                
-          
-                <div class="card-body text-center">
-                  <i class="fa-regular fa-square-check fa-5x"></i>
-                  <h5 class="card-title pt-1">Approvals</h5>
-                  <a href="/uploads/" class=" stretched-link"></a>
-                 
-                </div>
-              </div>
-            </div>
-            <div class="col">
-              <div class="card">
                
-                <div class="card-body text-center">
-                  <i class="fa-solid fa-envelope fa-5x"></i>
-                  <h5 class="card-title pt-1">Notifications</h5>
-                 
+                <div class="event-card">
+                    <img src="#" alt="#">
+                    <h2>Hestia</h2>
+                    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolores praesentium veniam impedit saepe optio esse consectetur ut similique omnis illum quae, accusamus odit vel quo nesciunt. Blanditiis facere optio commodi?</p>
+                    <a href="#">Learn More</a>
+                    </div>
                 </div>
-              </div>
-            </div>
-          </div>
-          </div>
-</body>
+        </section>
 
-{% endblock %}
+    </main>
+   </div>
+</body>
