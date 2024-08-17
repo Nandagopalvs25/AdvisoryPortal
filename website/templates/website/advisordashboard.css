@@ -1,0 +1,89 @@
+
+ul{ list-style-type:none;
+    margin: 0; padding: 0;
+ width:12%; background-color:#f1f1f1;
+ position:fixed; height:100%; overflow:auto; }
+li a{display:block; color:#000000; padding: 8px 0 8px
+16px;
+ text-decoration:none;}
+ li a:hover{background-color:#2900cc; color:white;border-radius: 0 20px 20px 0;}
+ .box{margin-left:12%; padding: 1px 0 0 1px;
+ height:100%;margin-right: 5px;}
+p{
+    
+    height:200px;
+    overflow:hidden;
+}
+ body {
+    font-family: Poppins;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+.header{
+    margin-left: 15%;
+}
+header {
+    background-color: white;
+    width:100%;
+    height:fit-content;
+    justify-content: center;
+}
+
+h1 {
+    margin: 0;
+}
+
+section {
+    
+    background-color: #fff;
+    padding: 0px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-left: 5px;
+}
+h2{
+    padding-left: 15px;
+    padding-top: 15px ;
+}
+.event-container {
+    display:flexbox;
+    margin-left: 30px;
+    margin-top: 2%;
+    display: flex;
+    margin-right: 30px;
+    
+}
+
+.event-card {
+    width: 300px;
+    margin-bottom: 20px;
+    justify-content: left;
+    margin-left: 30px;
+}
+
+.event-card img {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+}
+
+.event-card h2 {
+    margin-top: 10px;
+    margin-bottom: 5px;
+}
+
+.event-card p {
+    margin-bottom: 10px;
+}
+
+.event-card a {
+    display: block;
+    background-color:#2900cc;
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 5px;
+}
