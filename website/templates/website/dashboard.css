@@ -20,17 +20,34 @@
           'Upload  '
           'View '
          ' Notificationsss ';
+        display: grid;
         background-color: transparent;
         grid-gap:5px;
-        grid-template-columns: 250px;
-        padding:0;
-        margin-left:40%;
-        margin-top: 25%;
-        width:min-content;
+        grid-template-rows: repeat(4);
+        grid-template-columns: repeat(1);
+        padding:0; 
+        width: 200px;
+        }
+        .top
+        {
+            display: flex;
+            justify-content: center;
+            margin-top: 21%;
+            margin-bottom:8px;
+            align-items: center;
+            flex-direction: column;
         }
         main {
             display:flex;
             flex-direction: row;
+        }
+        .box
+        {
+            display:flex;
+            flex-direction: column;
+            align-items: center;
+            order:1;
+            justify-content: center;
         }
     }
 body{
@@ -49,7 +66,7 @@ a{
     
 }
 h1{padding-left: 5px;}
-a:hover{ background-color: chocolate; color: #ffff; padding: 20px;}
+a:hover{ color:gray;}
 .grid-container > div {
     background-color: rgb(255, 255, 255);
     padding: 20px 0;
