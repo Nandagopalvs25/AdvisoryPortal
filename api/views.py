@@ -7,7 +7,7 @@ from rest_framework.filters import SearchFilter
 
 
 class UserView(generics.ListAPIView):
-    queryset= CustomUser.objects.filter(role="S")
+    queryset= CustomUser.objects.filter(user_type="Student")
     serializer_class= ListUserSerializer
     filter_backends = [DjangoFilterBackend,SearchFilter]
     filterset_fields = ['batch__batch_code']
