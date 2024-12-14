@@ -1,5 +1,5 @@
 from django.urls import path,include
-from .views import index,dashboard,certificates,mooc,internship,extrac,workshops,uploads_view,studentsList,deleteMooc,deleteExtrac,deleteWorkshops,deleteIntern
+from .views import index,dashboard,certificates,mooc,internship,extrac,workshops,student_uploads_view,studentsList,deleteMooc,deleteExtrac,deleteWorkshops,deleteIntern
 
 
 urlpatterns = [
@@ -8,7 +8,7 @@ urlpatterns = [
     path("dashboard/",dashboard,name='dashboard'),
     path("studentslist/",studentsList,name='studentslist'),
     path("certificates/",certificates,name='certificate'),
-    path("uploads/",uploads_view,name='uploads_view'),
+    path("uploads/",student_uploads_view,name='uploads_view'),
     path("uploads/mooc/delete/<int:id>",deleteMooc,name='del_mooc'),
     path("uploads/intern/delete/<int:id>",deleteExtrac,name='del_internship'),
     path("uploads/extrac/delete/<int:id>",deleteIntern,name='del_extracurricular'),

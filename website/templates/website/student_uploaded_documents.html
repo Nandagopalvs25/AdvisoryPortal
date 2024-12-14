@@ -1,0 +1,152 @@
+{% extends "website/index.html" %}
+{% load i18n %}
+{% block content %}
+
+<body class="bg-light">
+
+  <div class="pt-5 text-center">
+    <h1 class="display-3 text-dark fw-bold">Uploaded Documents</h1>
+  </div>
+
+  <div class="container pt-4">
+    <div class="row">
+      <div class="col-md-12">
+        
+     
+        <table class="table table-bordered table-hover shadow-sm">
+          <thead class="bg-primary text-white">
+            <tr>
+              <th>Title</th>
+              <th>Type</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+        
+            {% for mc in mooc %}
+            <tr>
+              <td>{{ mc.course_title }}</td>
+              <td>MOOC</td>
+              <td>
+                <button class="btn btn-outline-primary btn-sm me-2" data-bs-toggle="modal" data-bs-target="#modalMOOC{{ mc.id }}">View</button>
+                <a href="mooc/delete/{{ mc.id }}" class="btn btn-danger btn-sm">Delete</a>
+              </td>
+            </tr>
+  
+            <div class="modal fade" id="modalMOOC{{ mc.id }}" tabindex="-1" aria-labelledby="modalLabelMOOC{{ mc.id }}" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="modalLabelMOOC{{ mc.id }}">{{ mc.course_title }} - MOOC</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                    <p><strong>Course Type:</strong> {{ mc.course_type }}</p>
+                    <p><strong>Start Date:</strong> {{ mc.start_date }}</p>
+                    <p><strong>End Date:</strong> {{ mc.end_date }}</p>
+                    <p><strong>Course ID:</strong> {{ mc.id }}</p>
+                    <a href="{{ mc.file_url }}" class="btn btn-outline-primary btn-sm">Download/View Course</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            {% endfor %}
+
+    
+            {% for mc in intern %}
+            <tr>
+              <td>{{ mc.name }}</td>
+              <td>Internship</td>
+              <td>
+                <button class="btn btn-outline-primary btn-sm me-2" data-bs-toggle="modal" data-bs-target="#modalIntern{{ mc.id }}">View</button>
+                <a href="intern/delete/{{ mc.id }}" class="btn btn-danger btn-sm">Delete</a>
+              </td>
+            </tr>
+            
+            <div class="modal fade" id="modalIntern{{ mc.id }}" tabindex="-1" aria-labelledby="modalLabelIntern{{ mc.id }}" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="modalLabelIntern{{ mc.id }}">{{ mc.name }} - Internship</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                    <p><strong>Company:</strong> {{ mc.company }}</p>
+                    <p><strong>Number of Days:</strong> {{ mc.no_of_days }}</p>
+                    <p><strong>Start Date:</strong> {{ mc.start_date }}</p>
+                    <p><strong>End Date:</strong> {{ mc.end_date }}</p>
+                    <a href="{{ mc.file_url }}" class="btn btn-outline-primary btn-sm">Download/View Internship</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            {% endfor %}
+
+    
+            {% for mc in workshops %}
+            <tr>
+              <td>{{ mc.name }}</td>
+              <td>Workshop</td>
+              <td>
+                <button class="btn btn-outline-primary btn-sm me-2" data-bs-toggle="modal" data-bs-target="#modalWorkshop{{ mc.id }}">View</button>
+                <a href="workshop/delete/{{ mc.id }}" class="btn btn-danger btn-sm">Delete</a>
+              </td>
+            </tr>
+     
+            <div class="modal fade" id="modalWorkshop{{ mc.id }}" tabindex="-1" aria-labelledby="modalLabelWorkshop{{ mc.id }}" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="modalLabelWorkshop{{ mc.id }}">{{ mc.name }} - Workshop</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                    <p><strong>Number of Days:</strong> {{ mc.no_of_days }}</p>
+                    <p><strong>Organizer:</strong> {{ mc.organiser }}</p>
+                    <p><strong>Date:</strong> {{ mc.date }}</p>
+                    <a href="{{ mc.file_url }}" class="btn btn-outline-primary btn-sm">Download/View Workshop</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            {% endfor %}
+
+     
+            {% for mc in extras %}
+            <tr>
+              <td>{{ mc.event_title }}</td>
+              <td>Extracurricular</td>
+              <td>
+                <button class="btn btn-outline-primary btn-sm me-2" data-bs-toggle="modal" data-bs-target="#modalExtrac{{ mc.id }}">View</button>
+                <a href="extrac/delete/{{ mc.id }}" class="btn btn-danger btn-sm">Delete</a>
+              </td>
+            </tr>
+   
+            <div class="modal fade" id="modalExtrac{{ mc.id }}" tabindex="-1" aria-labelledby="modalLabelExtrac{{ mc.id }}" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="modalLabelExtrac{{ mc.id }}">{{ mc.event_title }} - Extracurricular</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                    <p><strong>Organizer:</strong> {{ mc.event_organiser }}</p>
+                    <p><strong>Event Type:</strong> {{ mc.event_type }}</p>
+                    <p><strong>Event Date:</strong> {{ mc.event_date }}</p>
+                    <p><strong>Event Level:</strong> {{ mc.event_level }}</p>
+                    <p><strong>Position:</strong> {{ mc.event_position }}</p>
+                    <a href="{{ mc.file_url }}" class="btn btn-outline-primary btn-sm">Download/View Event</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            {% endfor %}
+          </tbody>
+        </table>
+        
+      </div>
+    </div>
+  </div>
+
+</body>
+{% endblock %}

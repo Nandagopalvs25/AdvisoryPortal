@@ -14,12 +14,15 @@ class CustomUser(AbstractUser):
     def __str__(self):
         return self.username
     
+    
+    
 class College(models.Model):
     name = models.CharField(max_length=255)
     address = models.TextField()
 
     def __str__(self):
         return self.name
+
 
 class Department(models.Model):
     name = models.CharField(max_length=255)
