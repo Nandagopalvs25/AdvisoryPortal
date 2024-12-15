@@ -1,5 +1,5 @@
 from django.shortcuts import render,HttpResponseRedirect,HttpResponse,get_object_or_404
-from .models import Internships,Extracurriculur,Mooc,Workshops,CustomUser,Student,Advisor
+from .models import Internships,Extracurriculur,Mooc,Workshops,CustomUser,Student,Advisor,Department
 from googleapiclient.discovery import build
 from google.oauth2 import service_account
 from googleapiclient.errors import HttpError
@@ -45,6 +45,25 @@ def student_uploads_view(request):
       workshops=Workshops.objects.filter(user=request.user)
       extras=Extracurriculur.objects.filter(user=request.user)
       return render(request, "website/student_uploaded_documents.html",{'mooc':mooc,'intern':intern,'workshops':workshops,'extras':extras})
+    
+@login_required
+def advisor_approval_view(request):
+    department = Advisor.objects.get(user=request.user).department
+    students = Student.objects.filter(department=department)
+    student_user_ids = students.values_list('user_id', flat=True)
+    internships = Internships.objects.filter(user_id__in=student_user_ids).filter(is_approved=False)
+    moocs = Mooc.objects.filter(user_id__in=student_user_ids).filter(is_approved=False)
+    extracurriculars = Extracurriculur.objects.filter(user_id__in=student_user_ids).filter(is_approved=False)
+    workshops = Workshops.objects.filter(user_id__in=student_user_ids).filter(is_approved=False)
+    context = {
+        "department": department,
+        "students": students,
+        "internships": internships,
+        "moocs": moocs,
+        "extracurriculars": extracurriculars,
+        "workshops": workshops,
+    }
+    return render(request, "website/advisor_approvals.html", context)
     
     
 
