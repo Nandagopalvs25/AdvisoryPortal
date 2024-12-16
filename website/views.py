@@ -8,7 +8,17 @@ import io
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.views.generic import ListView
+from django.http import JsonResponse
+from django.apps import apps
 # Create your views here.
+
+MODEL_MAP = {
+    'moc': Mooc,
+    'interns': Internships,
+      'workshops': Workshops,
+      'extrac': Extracurriculur
+          # Example: Adding User model for demonstration
+}
 
 def index(request):
      return render(request, "website/index.html")
@@ -176,57 +186,14 @@ def upload(files,name,folder_id):
     file = service.files().create(body=file_metadata, media_body=media,fields='id').execute()
     return file.get("id")
 
-@login_required
-def deleteMooc(request,id):
-    if request.method =="GET":
-        obj = get_object_or_404(Mooc, id = id)
-        # delete object
-        obj.delete()
-        # after deleting redirect to 
-        # home page
-        messages.success(request, "Deleted Succesfully.")
-        return HttpResponseRedirect("/uploads/")
- 
-    return render(request, "website/uploads.html")
+@login_required    
+def delete(request, model_name, id):
     
-@login_required
-def deleteExtrac(request,id):
-    if request.method =="GET":
-        obj = get_object_or_404(Extracurriculur, id = id)
-        # delete object
-        obj.delete()
-        # after deleting redirect to 
-        # home page
-        messages.success(request, "Deleted Succesfully.")
-        return HttpResponseRedirect("/uploads/")
- 
-    return render(request, "website/uploads.html")
-    
-@login_required
-def deleteWorkshops(request,id):
-    if request.method =="GET":
-        obj = get_object_or_404(Workshops, id = id)
-        # delete object
-        obj.delete()
-        # after deleting redirect to 
-        # home page
-        messages.success(request, "Deleted Succesfully.")
-        return HttpResponseRedirect("/uploads/")
- 
-    return render(request, "website/uploads.html")
-    
-@login_required
-def deleteIntern(request,id):
-    if request.method =="GET":
-        obj = get_object_or_404(Internships, id = id)
-        # delete object
-        obj.delete()
-        # after deleting redirect to 
-        # home page
-        messages.success(request, "Deleted Succesfully.")
-        return HttpResponseRedirect("/uploads/")
- 
-    return render(request, "website/uploads.html")
+  obj = get_object_or_404(MODEL_MAP.get(model_name), id = id)
+  obj.delete()
+  messages.success(request, "Deleted Succesfully.")
+  return HttpResponseRedirect("/uploads/")
+
     
 
     

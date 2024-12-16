@@ -1,5 +1,5 @@
 from django.urls import path,include
-from .views import index,dashboard,certificates,mooc,internship,extrac,workshops,student_uploads_view,studentsList,deleteMooc,deleteExtrac,deleteWorkshops,deleteIntern,advisor_approval_view
+from .views import index,dashboard,certificates,mooc,internship,extrac,workshops,student_uploads_view,studentsList,delete, advisor_approval_view
 
 
 urlpatterns = [
@@ -11,10 +11,7 @@ urlpatterns = [
     path("uploads/",student_uploads_view,name='uploads_view'),
     path("approvals/",advisor_approval_view,name='approval_view'),
 
-    path("uploads/mooc/delete/<int:id>",deleteMooc,name='del_mooc'),
-    path("uploads/intern/delete/<int:id>",deleteExtrac,name='del_internship'),
-    path("uploads/extrac/delete/<int:id>",deleteIntern,name='del_extracurricular'),
-    path("uploads/workshop/delete/<int:id>",deleteWorkshops,name='del_workshop'),
+    path("uploads/delete/<str:model_name>/<int:id>/", delete, name='delete_object'),
     path("certificates/mooc/",mooc,name='mooc'),
     path("certificates/internships/",internship,name='internship'),
     path("certificates/extrac/",extrac,name='extrac'),
