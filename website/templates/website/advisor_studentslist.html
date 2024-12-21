@@ -1,0 +1,62 @@
+{% extends "website/index.html" %}
+{% load i18n %}
+{% block content %}
+
+
+
+<script>
+    function fetchBatchStudents(batchId) {
+        if (batchId) {
+            fetch(`/studentslist/?batch=${batchId}`, {
+                method: 'GET',
+                headers: {
+                    'X-Requested-With': 'XMLHttpRequest',
+                },
+            })
+            .then(response => response.json())
+            .then(data => {
+                // Update the students table dynamically
+                document.getElementById('studentsListContainer').innerHTML = data.html;
+            })
+            .catch(error => console.error('Error fetching students:', error));
+        }
+    }
+    </script>
+
+
+
+
+<body>
+    <div class="container pt-4">
+        <!-- Page Title -->
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h1 class="h3">Student List</h1>
+            <form class="form-inline d-flex align-items-center">
+                <input class="form-control me-2" type="search" placeholder="Search students..." aria-label="Search">
+                <button class="btn btn-success" type="submit">Search</button>
+            </form>
+        </div>
+
+        <!-- Batch Selection -->
+        <div class="row mb-4">
+            <div class="col-md-3">
+                <label for="batchSelect" class="form-label fw-bold">Select Batch</label>
+                <select class="form-select" id="batchSelect" aria-label="Select batch" onchange="fetchBatchStudents(this.value)">
+                    <option selected>Choose batch...</option>
+                    {% for b in batches %}
+
+                    <option value="{{ b.id }}">{{b.name}}</option>
+                    
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+
+        <!-- Students Table -->
+        <div id="studentsListContainer">
+        {% include 'website/advisor_partial_studentslist.html' with students=students %}
+    </div>
+    </div>
+</body>
+
+{% endblock %}

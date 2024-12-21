@@ -1,0 +1,24 @@
+<div class="table-responsive">
+  <table class="table table-bordered table-striped align-middle">
+    <thead class="table-dark">
+      <tr>
+        <th scope="col" style="width: 5%">#</th>
+        <th scope="col">Name</th>
+        <th scope="col">Admission No.</th>
+        <th scope="col">Roll No.</th>
+        <th scope="col">Batch</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for s in students %}
+      <tr>
+        <td>{{ forloop.counter }}</td>
+        <td>{{ s.user.username }}</td>
+        <td>{{ s.admission_number }}</td>
+        <td>{{ s.roll_number }}</td>
+        <td>{{ s.batch }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
