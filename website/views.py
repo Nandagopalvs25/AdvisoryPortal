@@ -114,9 +114,9 @@ def mooc(request):
         start_date = request.POST['start_date']
         end_date = request.POST['end_date']
         student = Student.objects.get(user=user)
-        folder_id = student.batch.gdrive_folder_url
+        folder_id = student.gdrive_folder_id
         id = upload(request.FILES['files'].read(),
-                    student.admission_number, folder_id)
+                    title, folder_id)
         url = "https://drive.google.com/file/d/{id}/preview".format(id=id)
         mooc = Mooc(user=user, course_title=title, course_type=type,
                     start_date=start_date, end_date=end_date, file_url=url)
@@ -138,9 +138,9 @@ def internship(request):
         start_date = request.POST['start_date']
         end_date = request.POST['end_date']
         student = Student.objects.get(user=user)
-        folder_id = student.batch.gdrive_folder_url
+        folder_id = student.gdrive_folder_id
         id = upload(request.FILES['files'].read(),
-                    student.admission_number, folder_id)
+                    name, folder_id)
         url = "https://drive.google.com/file/d/{id}/preview".format(id=id)
         intern = Internships(user=user, name=name, company=company, no_of_days=days,
                              start_date=start_date, end_date=end_date, file_url=url)
@@ -166,9 +166,9 @@ def extrac(request):
         type = request.POST['event_type']
         position = request.POST['position']
         student = Student.objects.get(user=user)
-        folder_id = student.batch.gdrive_folder_url
+        folder_id = student.gdrive_folder_id
         id = upload(request.FILES['files'].read(),
-                    student.admission_number, folder_id)
+                    title, folder_id)
         url = "https://drive.google.com/file/d/{id}/preview".format(id=id)
         extrac = Extracurriculur(user=user, event_title=title, event_organiser=organiser, event_date=date,
                                  event_level=level, event_type=type, event_position=position, file_url=url)
@@ -189,9 +189,9 @@ def workshops(request):
         date = request.POST['date']
         no_of_days = request.POST['days']
         student = Student.objects.get(user=user)
-        folder_id = student.batch.gdrive_folder_url
+        folder_id = student.gdrive_folder_id
         id = upload(request.FILES['files'].read(),
-                    student.admission_number, folder_id)
+                    name, folder_id)
         url = "https://drive.google.com/file/d/{id}/preview".format(id=id)
         workshops = Workshops(user=user, name=name, organiser=organiser,
                               date=date, no_of_days=no_of_days, file_url=url)
