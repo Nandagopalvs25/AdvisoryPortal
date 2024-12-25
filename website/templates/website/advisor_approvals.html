@@ -1,219 +1,422 @@
-{% extends "website/index.html" %}
-{% load i18n %}
-{% block content %}
+{% extends "website/index.html" %} {% load i18n %} {% block content %}
 
 <body>
-    <div class="container pt-4">
-        <div class="d-flex justify-content-between align-items-center mb-4">
-            <h1 class="h3">Uploaded Documents</h1>
-            <form class="form-inline d-flex align-items-center">
-                <input class="form-control me-2" type="search" placeholder="Search uploads..." aria-label="Search">
-                <button class="btn btn-success" type="submit">Search</button>
-            </form>
-        </div>
-        <div class="row mb-4">
-            <div class="col-md-3">
-                <label for="batchSelect" class="form-label fw-bold">Select Batch</label>
-                <select class="form-select" id="batchSelect" aria-label="Select batch">
-                    <option selected>Choose batch...</option>
-                    <option value="1">Batch One</option>
-                    <option value="2">Batch Two</option>
-                    <option value="3">Batch Three</option>
-                </select>
-            </div>
-        </div>
-        <div class="table-responsive">
-            <table class="table table-bordered table-striped align-middle">
-                <thead class="table-dark">
-                    <tr>
-                        <th scope="col" style="width: 5%;">#</th>
-                        <th scope="col">Document Type</th>
-                        <th scope="col">Student Name</th>
-                        <th scope="col">Admission No.</th>
-                        <th scope="col">Batch</th>
-                        <th scope="col">Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for internship in internships %}
-                    <tr>
-                        <td>{{ forloop.counter }}</td>
-                        <td>Internship</td>
-                        <td>
-                         
-                                {{ internship.user.username }}
-                           
-                        </td>
-                        <td>{{ internship.user.student_profile.admission_number }}</td>
-                        <td>{{ internship.user.student_profile.batch.name }}</td>
-                        <td>
-                            <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#internshipModal{{ internship.id }}">
-                                View Details
-                            </button>
-                        </td>
-                    </tr>
-                    {% endfor %}
-                    {% for workshop in workshops %}
-                    <tr>
-                        <td>{{ forloop.counter }}</td>
-                        <td>Workshop</td>
-                        <td>
-                                {{ workshop.user.username }}
-                        </td>
-                        <td>{{ workshop.user.student_profile.admission_number }}</td>
-                        <td>{{ workshop.user.student_profile.batch.name }}</td>
-                        <td>
-                            <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#workshopModal{{ workshop.id }}">
-                                View Details
-                            </button>
-                        </td>
-                    </tr>
-                    {% endfor %}
-
-                    {% for mooc in moocs %}
-                    <tr>
-                        <td>{{ forloop.counter }}</td>
-                        <td>MOOC</td>
-                        <td>
-                                {{ mooc.user.username }}
-                        </td>
-                        <td>{{ mooc.user.student_profile.admission_number }}</td>
-                        <td>{{ mooc.user.student_profile.batch.name }}</td>
-                        <td>
-                            <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#moocModal{{ mooc.id }}">
-                                View Details
-                            </button>
-                        </td>
-                    </tr>
-                    {% endfor %}
-
-                    {% for extracurricular in extracurriculars %}
-                    <tr>
-                        <td>{{ forloop.counter }}</td>
-                        <td>Extracurricular</td>
-                        <td>
-                                {{ extracurricular.user.username }}
-                        </td>
-                        <td>{{ extracurricular.user.student_profile.admission_number }}</td>
-                        <td>{{ extracurricular.user.student_profile.batch.name }}</td>
-                        <td>
-                            <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#extracurricularModal{{ extracurricular.id }}">
-                                View Details
-                            </button>
-                        </td>
-                    </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-        </div>
-
-<!-- Internship Modals -->
-{% for internship in internships %}
-<div class="modal fade" id="internshipModal{{ internship.id }}" tabindex="-1" aria-labelledby="internshipModalLabel{{ internship.id }}" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="internshipModalLabel{{ internship.id }}">Internship Details</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <p><strong>Title:</strong> {{ internship.name }}</p>
-                <p><strong>Company:</strong> {{ internship.company }}</p>
-                <p><strong>No. of Days:</strong> {{ internship.no_of_days }}</p>
-                <p><strong>Start Date:</strong> {{ internship.start_date }}</p>
-                <p><strong>End Date:</strong> {{ internship.end_date }}</p>
-                <p><strong>File:</strong> <a href="{{ internship.file_url }}" target="_blank">View Document</a></p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary" onclick="approveItem('{{ internship.approve_url }}')">Approve</button>
-            </div>
-        </div>
+  <div class="container pt-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+      <h1 class="h3">Uploaded Documents</h1>
+      <form class="form-inline d-flex align-items-center">
+        <input
+          class="form-control me-2"
+          type="search"
+          placeholder="Search uploads..."
+          aria-label="Search"
+        />
+        <button class="btn btn-success" type="submit">Search</button>
+      </form>
     </div>
-</div>
-{% endfor %}
-
-<!-- Workshop Modals -->
-{% for workshop in workshops %}
-<div class="modal fade" id="workshopModal{{ workshop.id }}" tabindex="-1" aria-labelledby="workshopModalLabel{{ workshop.id }}" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="workshopModalLabel{{ workshop.id }}">Workshop Details</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <p><strong>Name:</strong> {{ workshop.name }}</p>
-                <p><strong>Organizer:</strong> {{ workshop.organiser }}</p>
-                <p><strong>No. of Days:</strong> {{ workshop.no_of_days }}</p>
-                <p><strong>Date:</strong> {{ workshop.date }}</p>
-                <p><strong>File:</strong> <a href="{{ workshop.file_url }}" target="_blank">View Document</a></p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary" onclick="approveItem('{{ workshop.approve_url }}')">Approve</button>
-            </div>
-        </div>
+    <div class="row mb-4">
+      <div class="col-md-3">
+        <label for="batchSelect" class="form-label fw-bold">Select Batch</label>
+        <select class="form-select" id="batchSelect" aria-label="Select batch">
+          <option selected>Choose batch...</option>
+          <option value="1">Batch One</option>
+          <option value="2">Batch Two</option>
+          <option value="3">Batch Three</option>
+        </select>
+      </div>
     </div>
-</div>
-{% endfor %}
-
-<!-- MOOC Modals -->
-{% for mooc in moocs %}
-<div class="modal fade" id="moocModal{{ mooc.id }}" tabindex="-1" aria-labelledby="moocModalLabel{{ mooc.id }}" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="moocModalLabel{{ mooc.id }}">MOOC Details</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <p><strong>Title:</strong> {{ mooc.course_title }}</p>
-                <p><strong>Type:</strong> {{ mooc.course_type }}</p>
-                <p><strong>Start Date:</strong> {{ mooc.start_date }}</p>
-                <p><strong>End Date:</strong> {{ mooc.end_date }}</p>
-                <p><strong>File:</strong> <a href="{{ mooc.file_url }}" target="_blank">View Document</a></p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary" onclick="approveItem('{{ mooc.approve_url }}')">Approve</button>
-            </div>
-        </div>
+    <div class="table-responsive">
+      <table class="table table-bordered table-striped align-middle">
+        <thead class="table-dark">
+          <tr>
+            <th scope="col" style="width: 5%">#</th>
+            <th scope="col">Document Type</th>
+            <th scope="col">Student Name</th>
+            <th scope="col">Admission No.</th>
+            <th scope="col">Batch</th>
+            <th scope="col">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for internship in internships %}
+          <tr>
+            <td>{{ forloop.counter }}</td>
+            <td>Internship</td>
+            <td>{{ internship.user.username }}</td>
+            <td>{{ internship.user.student_profile.admission_number }}</td>
+            <td>{{ internship.user.student_profile.batch.name }}</td>
+            <td>
+              <button
+                class="btn btn-primary btn-sm"
+                data-bs-toggle="modal"
+                data-bs-target="#internshipModal{{ internship.id }}"
+              >
+                View Details
+              </button>
+            </td>
+          </tr>
+          {% endfor %} {% for workshop in workshops %}
+          <tr>
+            <td>{{ forloop.counter }}</td>
+            <td>Workshop</td>
+            <td>{{ workshop.user.username }}</td>
+            <td>{{ workshop.user.student_profile.admission_number }}</td>
+            <td>{{ workshop.user.student_profile.batch.name }}</td>
+            <td>
+              <button
+                class="btn btn-primary btn-sm"
+                data-bs-toggle="modal"
+                data-bs-target="#workshopModal{{ workshop.id }}"
+              >
+                View Details
+              </button>
+            </td>
+          </tr>
+          {% endfor %} {% for mooc in moocs %}
+          <tr>
+            <td>{{ forloop.counter }}</td>
+            <td>MOOC</td>
+            <td>{{ mooc.user.username }}</td>
+            <td>{{ mooc.user.student_profile.admission_number }}</td>
+            <td>{{ mooc.user.student_profile.batch.name }}</td>
+            <td>
+              <button
+                class="btn btn-primary btn-sm"
+                data-bs-toggle="modal"
+                data-bs-target="#moocModal{{ mooc.id }}"
+              >
+                View Details
+              </button>
+            </td>
+          </tr>
+          {% endfor %} {% for extracurricular in extracurriculars %}
+          <tr>
+            <td>{{ forloop.counter }}</td>
+            <td>Extracurricular</td>
+            <td>{{ extracurricular.user.username }}</td>
+            <td>{{ extracurricular.user.student_profile.admission_number }}</td>
+            <td>{{ extracurricular.user.student_profile.batch.name }}</td>
+            <td>
+              <button
+                class="btn btn-primary btn-sm"
+                data-bs-toggle="modal"
+                data-bs-target="#extracurricularModal{{ extracurricular.id }}"
+              >
+                View Details
+              </button>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
     </div>
-</div>
-{% endfor %}
 
-<!-- Extracurricular Modals -->
-{% for extracurricular in extracurriculars %}
-<div class="modal fade" id="extracurricularModal{{ extracurricular.id }}" tabindex="-1" aria-labelledby="extracurricularModalLabel{{ extracurricular.id }}" aria-hidden="true">
-    <div class="modal-dialog">
+    <!-- Internship Modals -->
+    {% for internship in internships %}
+    <div
+      class="modal fade"
+      id="internshipModal{{ internship.id }}"
+      tabindex="-1"
+      aria-labelledby="internshipModalLabel{{ internship.id }}"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
         <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="extracurricularModalLabel{{ extracurricular.id }}">Extracurricular Details</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          <div class="modal-header">
+            <h5
+              class="modal-title"
+              id="internshipModalLabel{{ internship.id }}"
+            >
+              Internship Details
+            </h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <p><strong>Title:</strong> {{ internship.name }}</p>
+            <p><strong>Company:</strong> {{ internship.company }}</p>
+            <p><strong>No. of Days:</strong> {{ internship.no_of_days }}</p>
+            <p><strong>Start Date:</strong> {{ internship.start_date }}</p>
+            <p><strong>End Date:</strong> {{ internship.end_date }}</p>
+            <p>
+              <strong>File:</strong>
+              <a href="{{ internship.file_url }}" target="_blank"
+                >View Document</a
+              >
+            </p>
+            <hr />
+
+            <div class="d-flex align-items-center mt-3">
+              <label for="ktuPoints{{ internship.id }}" class="form-label me-2"
+                ><strong>KTU Points:</strong></label
+              >
+              <input
+                type="number"
+                id="ktuPoints{{ internship.id }}"
+                class="form-control form-control-sm w-25"
+                placeholder="Points"
+                min="0"
+              />
             </div>
-            <div class="modal-body">
-                <p><strong>Title:</strong> {{ extracurricular.event_title }}</p>
-                <p><strong>Organizer:</strong> {{ extracurricular.event_organiser }}</p>
-                <p><strong>Event Date:</strong> {{ extracurricular.event_date }}</p>
-                <p><strong>Event Type:</strong> {{ extracurricular.event_type }}</p>
-                <p><strong>Level:</strong> {{ extracurricular.event_level }}</p>
-                <p><strong>Position:</strong> {{ extracurricular.event_position }}</p>
-                <p><strong>File:</strong> <a href="{{ extracurricular.file_url }}" target="_blank">View Document</a></p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary" onclick="approveItem('approve', {{ extracurricular.id }})">Approve</button>
-            </div>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-primary"
+              onclick="approveItem('{{ internship.id }}', 'internship', document.getElementById('ktuPoints{{ internship.id }}').value)"
+            >
+              Approve
+            </button>
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
+          </div>
         </div>
+      </div>
     </div>
-</div>
-{% endfor %}
+    {% endfor %}
 
-<script>
-function approveItem(approveUrl,id) {
-    if (confirm('Are you sure you want to approve this item?')) {
-        const finalUrl = approveUrl.includes(id) ? approveUrl : `${approveUrl}/${id}`;
-        window.location.href = finalUrl;
-    }
-}
-</script>
+    <!-- Workshop Modals -->
+    {% for workshop in workshops %}
+    <div
+      class="modal fade"
+      id="workshopModal{{ workshop.id }}"
+      tabindex="-1"
+      aria-labelledby="workshopModalLabel{{ workshop.id }}"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="workshopModalLabel{{ workshop.id }}">
+              Workshop Details
+            </h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <p><strong>Name:</strong> {{ workshop.name }}</p>
+            <p><strong>Organizer:</strong> {{ workshop.organiser }}</p>
+            <p><strong>No. of Days:</strong> {{ workshop.no_of_days }}</p>
+            <p><strong>Date:</strong> {{ workshop.date }}</p>
+            <p>
+              <strong>File:</strong>
+              <a href="{{ workshop.file_url }}" target="_blank"
+                >View Document</a
+              >
+            </p>
+            <hr />
 
-      
-        {% endblock %}
+            <div class="d-flex align-items-center mt-3">
+              <label for="ktuPoints{{ workshop.id }}" class="form-label me-2"
+                ><strong>KTU Points:</strong></label
+              >
+              <input
+                type="number"
+                id="ktuPoints{{ workshop.id }}"
+                class="form-control form-control-sm w-25"
+                placeholder="Points"
+                min="0"
+              />
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-primary"
+              onclick="approveItem('{{ workshop.id }}', 'workshop', document.getElementById('ktuPoints{{ workshop.id }}').value)"
+            >
+              Approve
+            </button>
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+
+    <!-- MOOC Modals -->
+    {% for mooc in moocs %}
+    <div
+      class="modal fade"
+      id="moocModal{{ mooc.id }}"
+      tabindex="-1"
+      aria-labelledby="moocModalLabel{{ mooc.id }}"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="moocModalLabel{{ mooc.id }}">
+              MOOC Details
+            </h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <p><strong>Title:</strong> {{ mooc.course_title }}</p>
+            <p><strong>Type:</strong> {{ mooc.course_type }}</p>
+            <p><strong>Start Date:</strong> {{ mooc.start_date }}</p>
+            <p><strong>End Date:</strong> {{ mooc.end_date }}</p>
+            <p>
+              <strong>File:</strong>
+              <a href="{{ mooc.file_url }}" target="_blank">View Document</a>
+            </p>
+            <hr />
+
+            <div class="d-flex align-items-center mt-3">
+              <label for="ktuPoints{{ mooc.id }}" class="form-label me-2"
+                ><strong>KTU Points:</strong></label
+              >
+              <input
+                type="number"
+                id="ktuPoints{{ mooc.id }}"
+                class="form-control form-control-sm w-25"
+                placeholder="Points"
+                min="0"
+              />
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-primary"
+              onclick="approveItem('{{ mooc.id }}', 'mooc', document.getElementById('ktuPoints{{ mooc.id }}').value)"
+            >
+              Approve
+            </button>
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+
+    <!-- Extracurricular Modals -->
+    {% for extracurricular in extracurriculars %}
+    <div
+      class="modal fade"
+      id="extracurricularModal{{ extracurricular.id }}"
+      tabindex="-1"
+      aria-labelledby="extracurricularModalLabel{{ extracurricular.id }}"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5
+              class="modal-title"
+              id="extracurricularModalLabel{{ extracurricular.id }}"
+            >
+              Extracurricular Details
+            </h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <p><strong>Title:</strong> {{ extracurricular.event_title }}</p>
+            <p>
+              <strong>Organizer:</strong> {{ extracurricular.event_organiser }}
+            </p>
+            <p><strong>Event Date:</strong> {{ extracurricular.event_date }}</p>
+            <p><strong>Event Type:</strong> {{ extracurricular.event_type }}</p>
+            <p><strong>Level:</strong> {{ extracurricular.event_level }}</p>
+            <p>
+              <strong>Position:</strong> {{ extracurricular.event_position }}
+            </p>
+            <p>
+              <strong>File:</strong>
+              <a href="{{ extracurricular.file_url }}" target="_blank"
+                >View Document</a
+              >
+            </p>
+            <hr />
+
+            <div class="d-flex align-items-center mt-3">
+              <label
+                for="ktuPoints{{ extracurricular.id }}"
+                class="form-label me-2"
+                ><strong>KTU Points:</strong></label
+              >
+              <input
+                type="number"
+                id="ktuPoints{{ extracurricular.id }}"
+                class="form-control form-control-sm w-25"
+                placeholder="Points"
+                min="0"
+              />
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-primary"
+              onclick="approveItem('{{ extracurricular.id }}', 'extracurricular', document.getElementById('ktuPoints{{ extracurricular.id }}').value)"
+            >
+              Approve
+            </button>
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+
+    <script>
+      function approveItem(id, type, ktuPoints) {
+        console.log(id, type, ktuPoints);
+        if (!ktuPoints) {
+          alert("Please enter KTU points before approving.");
+          return;
+        }
+        approveUrl = "/approve";
+        if (confirm("Are you sure you want to approve this item?")) {
+          const finalUrl = `${approveUrl}/${id}?type=${encodeURIComponent(
+            type
+          )}&ktu_points=${encodeURIComponent(ktuPoints)}`;
+          window.location.href = finalUrl;
+        }
+      }
+    </script>
+
+    {% endblock %}
+  </div>
+</body>

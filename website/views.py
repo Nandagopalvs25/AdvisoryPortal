@@ -18,7 +18,7 @@ MODEL_MAP = {
     'interns': Internships,
     'workshops': Workshops,
     'extrac': Extracurriculur
-  
+
 }
 
 
@@ -59,7 +59,7 @@ def advisor_studentsList(request):
             'website/advisor_partial_studentslist.html',
             {'students': students_in_department})
         return JsonResponse({'html': html})
-    
+
     elif (batch_id != None):
         students_in_department = Student.objects.filter(
             department=advisor.department).filter(batch=batch_id)
@@ -69,6 +69,24 @@ def advisor_studentsList(request):
         return JsonResponse({'html': html})
 
     return render(request, "website/advisor_studentslist.html", {'students': students_in_department, 'batches': batches_in_department})
+
+
+@login_required
+def advisor_approve_upload_view(request, id):
+    model_mapping = {
+        'workshop': Workshops,
+        'mooc': Mooc,
+        'extracurricular': Extracurriculur,
+        'internship': Internships,
+    }
+    item_type = request.GET.get('type')
+    obj_required = model_mapping.get(item_type).objects.get(id=id)
+    ktu_points = request.GET.get('ktu_points')
+    obj_required.ktu_points = ktu_points
+    obj_required.is_approved=True
+    obj_required.save()
+    messages.success(request, "Approval Succesfull.")
+    return HttpResponseRedirect("/approvals")
 
 
 @login_required
@@ -148,7 +166,6 @@ def internship(request):
 
         messages.success(request, "Uploaded Succesfully.")
         return HttpResponseRedirect("/")
-
 
     return render(request, "website/internship.html")
 

@@ -81,6 +81,7 @@ class Internships(models.Model):
      end_date=models.CharField(max_length=50)
      file_url=models.CharField(max_length=300)
      is_approved=models.BooleanField(default=False)
+     ktu_points=models.IntegerField(blank=True,null=True)
 
        
      def __str__(self):
@@ -96,7 +97,7 @@ class Mooc(models.Model):
      end_date=models.CharField(max_length=50)
      file_url=models.CharField(max_length=300)
      is_approved=models.BooleanField(default=False)
-   
+     ktu_points=models.IntegerField(blank=True,null=True)
      def __str__(self):
           return self.course_title
      
@@ -112,6 +113,7 @@ class Extracurriculur(models.Model):
      event_position=models.CharField(max_length=30)
      file_url=models.CharField(max_length=300)
      is_approved=models.BooleanField(default=False)
+     ktu_points=models.IntegerField(blank=True,null=True)
 
      def __str__(self):
           return self.event_title
@@ -126,6 +128,7 @@ class Workshops(models.Model):
      date=models.CharField(max_length=50)
      file_url=models.CharField(max_length=300)
      is_approved=models.BooleanField(default=False)
+     ktu_points=models.IntegerField(blank=True,null=True)
 
      def __str__(self):
           return self.name
