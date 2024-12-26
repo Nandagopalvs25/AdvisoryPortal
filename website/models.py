@@ -65,6 +65,8 @@ class Student(models.Model):
     guardian_no=models.CharField(null=True,blank=True,max_length=20);
     teacher_remarks=models.CharField(null=True,blank=True,max_length=200);
     gdrive_folder_id=models.CharField(max_length=300,blank=True)
+    ktu_points=models.IntegerField(blank=True,null=True)
+
 
     def __str__(self):
         return self.user.username

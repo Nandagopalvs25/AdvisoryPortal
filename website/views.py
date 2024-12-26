@@ -121,7 +121,13 @@ def advisor_approval_view(request):
     }
     return render(request, "website/advisor_approvals.html", context)
 
+@login_required
+def advisor_student_profile_view(request,id):
+        student=Student.objects.get(id=id)
+        return render(request, "website/advisor_student_profile.html",{'student':student})
 
+    
+    
 @login_required
 def mooc(request):
     if request.method == "POST":

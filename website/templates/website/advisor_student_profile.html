@@ -1,0 +1,78 @@
+{% extends "website/index.html" %}
+{% load i18n %}
+{% block content %}
+
+<div class="container pt-5">
+    <div class="card shadow-sm mx-auto" style="max-width: 800px; border-radius: 10px;">
+        <div class="card-body">
+            
+            <div class="d-flex align-items-center mb-4">
+                <div class="avatar me-3" style="width: 100px; height: 100px; border-radius: 50%; background-color: #f5f5f5; display: flex; align-items: center; justify-content: center;">
+                    <i class="bi bi-person-circle" style="font-size: 50px; color: #6c757d;"></i>
+                </div>
+                <div>
+                    <h2 class="mb-1">{{ student.user.username }}</h2>
+                    <p class="text-muted mb-0">{{ student.department }} - {{ student.batch }}</p>
+                </div>
+            </div>
+            
+           
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <p class="fw-bold text-muted mb-1">Department</p>
+                    <p class="mb-0">{{ student.department }}</p>
+                  
+                </div>
+                <div class="col-md-6 mb-3">
+                    <p class="fw-bold text-muted mb-1">Batch</p>
+                    <p class="mb-0">{{ student.batch }}</p>
+                    
+                </div>
+                <div class="col-md-6 mb-3">
+                    <p class="fw-bold text-muted mb-1">Roll Number</p>
+                    <p class="mb-0">{{ student.roll_number }}</p>
+                   
+                </div>
+                <div class="col-md-6 mb-3">
+                    <p class="fw-bold text-muted mb-1">Admission Number</p>
+                    <p class="mb-0">{{ student.admission_number }}</p>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <p class="fw-bold text-muted mb-1">Phone Number</p>
+                    <p class="mb-0">{{ student.phone_no }}</p>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <p class="fw-bold text-muted mb-1">Gender</p>
+                    <p class="mb-0">{{ student.gender }}</p>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <p class="fw-bold text-muted mb-1">Guardian</p>
+                    <p class="mb-0">{{ student.guardian }}</p>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <p class="fw-bold text-muted mb-1">Guardian Number</p>
+                    <p class="mb-0">{{ student.guardian_no }}</p>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <p class="fw-bold text-muted mb-1">Date of birth</p>
+                    <p class="mb-0">{{ student.dob }}</p>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <p class="fw-bold text-muted mb-1">Teachers Remarks</p>
+                    <p class="mb-0">{{ student.teacher_remarks }}</p>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <p class="fw-bold text-muted mb-1">KTU Points</p>
+                    <p class="mb-0">{{ student.ktu_points }}</p>
+                </div>
+                
+            </div>
+
+            <div class="d-flex justify-content-end mt-3">
+                <a href="/students/edit/{{ student.id }}" class="btn btn-primary">Edit Profile</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

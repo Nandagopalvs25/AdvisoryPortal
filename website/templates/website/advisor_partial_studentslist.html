@@ -11,7 +11,7 @@
     </thead>
     <tbody>
       {% for s in students %}
-      <tr>
+      <tr onclick="window.location.href='/studentProfile/{{ s.id }}'" style="cursor: pointer;">
         <td>{{ forloop.counter }}</td>
         <td>{{ s.user.username }}</td>
         <td>{{ s.admission_number }}</td>
