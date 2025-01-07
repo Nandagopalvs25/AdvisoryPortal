@@ -124,7 +124,43 @@ def advisor_approval_view(request):
 @login_required
 def advisor_student_profile_view(request,id):
         student=Student.objects.get(id=id)
-        return render(request, "website/advisor_student_profile.html",{'student':student})
+        moocs=Mooc.objects.filter(user=student.user)
+        internships=Internships.objects.filter(user=student.user)
+        extracurriculars=Extracurriculur.objects.filter(user=student.user)
+        workshops=Workshops.objects.filter(user=student.user)
+        documents=[]
+        
+        for i in moocs:
+            data={}
+            data["title"]=i.course_title
+            data["type"]="Mooc"
+            data["ktu_points"]=i.ktu_points
+            documents.append(data)
+        for i in internships:
+            data={}
+            data["title"]=i.name
+            data["type"]="Internship"
+            data["ktu_points"]=i.ktu_points
+            documents.append(data)
+
+        for i in extracurriculars:
+            data={}
+            data["title"]=i.event_title
+            data["type"]="Extracurricular"
+            data["ktu_points"]=i.ktu_points
+            documents.append(data)
+
+        for i in workshops:
+            data={}
+            data["title"]=i.name
+            data["type"]="Workshop"
+            data["ktu_points"]=i.ktu_points
+            documents.append(data)
+
+            
+        print
+        return render(request, "website/advisor_student_profile.html",{'student':student,'documents':documents})
+    
 
     
     

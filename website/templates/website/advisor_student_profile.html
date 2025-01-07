@@ -3,35 +3,30 @@
 {% block content %}
 
 <div class="container pt-5">
-    <div class="card shadow-sm mx-auto" style="max-width: 800px; border-radius: 10px;">
+    
+    <div class="card shadow-lg mx-auto" style="max-width: 900px; border-radius: 12px; border: none;">
         <div class="card-body">
             
-            <div class="d-flex align-items-center mb-4">
-                <div class="avatar me-3" style="width: 100px; height: 100px; border-radius: 50%; background-color: #f5f5f5; display: flex; align-items: center; justify-content: center;">
-                    <i class="bi bi-person-circle" style="font-size: 50px; color: #6c757d;"></i>
+            <div class="d-flex align-items-center mb-5">
+                <div class="avatar me-4" style="width: 120px; height: 120px; border-radius: 50%; background-color: #f5f5f5; display: flex; align-items: center; justify-content: center;">
+                    <i class="bi bi-person-circle" style="font-size: 60px; color: #007bff;"></i>
                 </div>
                 <div>
-                    <h2 class="mb-1">{{ student.user.username }}</h2>
-                    <p class="text-muted mb-0">{{ student.department }} - {{ student.batch }}</p>
+                    <h2 class="mb-2 text-primary">{{ student.user.username }}</h2>
+                    <p class="text-muted mb-1">{{ student.department }} - {{ student.batch }}</p>
+                    <p class="text-muted mb-0">Roll No: {{ student.roll_number }}</p>
                 </div>
             </div>
+
             
-           
             <div class="row">
                 <div class="col-md-6 mb-3">
                     <p class="fw-bold text-muted mb-1">Department</p>
                     <p class="mb-0">{{ student.department }}</p>
-                  
                 </div>
                 <div class="col-md-6 mb-3">
                     <p class="fw-bold text-muted mb-1">Batch</p>
                     <p class="mb-0">{{ student.batch }}</p>
-                    
-                </div>
-                <div class="col-md-6 mb-3">
-                    <p class="fw-bold text-muted mb-1">Roll Number</p>
-                    <p class="mb-0">{{ student.roll_number }}</p>
-                   
                 </div>
                 <div class="col-md-6 mb-3">
                     <p class="fw-bold text-muted mb-1">Admission Number</p>
@@ -54,7 +49,7 @@
                     <p class="mb-0">{{ student.guardian_no }}</p>
                 </div>
                 <div class="col-md-6 mb-3">
-                    <p class="fw-bold text-muted mb-1">Date of birth</p>
+                    <p class="fw-bold text-muted mb-1">Date of Birth</p>
                     <p class="mb-0">{{ student.dob }}</p>
                 </div>
                 <div class="col-md-6 mb-3">
@@ -65,14 +60,98 @@
                     <p class="fw-bold text-muted mb-1">Activity Points</p>
                     <p class="mb-0">{{ student.ktu_points }}</p>
                 </div>
-                
             </div>
 
-            <div class="d-flex justify-content-end mt-3">
+            
+            <div class="d-flex justify-content-end mt-4">
                 <a href="/students/edit/{{ student.id }}" class="btn btn-primary">Edit Profile</a>
             </div>
         </div>
     </div>
+
+    
+    <div class="card shadow-lg mx-auto mt-5" style="max-width: 900px; border-radius: 12px; border: none;">
+        <div class="card-body">
+            <h4 class="mb-4 text-primary">Uploaded Documents</h4>
+            <table class="table table-bordered table-striped">
+                <thead class="thead-light">
+                    <tr>
+                        <th>Serial No</th>
+                        <th>Title</th>
+                        <th>Type</th>
+                        <th>KTU Points</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for document in documents %}
+                    <tr>
+                        <td>{{ forloop.counter }}</td>
+                        <td>{{ document.title }}</td>
+                        <td>{{ document.type }}</td>
+                        <td>{{ document.ktu_points }}</td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="4" class="text-center">No documents uploaded.</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
 </div>
 
 {% endblock %}
+
+<style>
+    
+    .card {
+        transition: all 0.3s ease-in-out;
+    }
+
+    .card:hover {
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        transform: translateY(-5px);
+    }
+
+    table {
+        border-collapse: collapse;
+    }
+
+    table th, table td {
+        padding: 12px;
+        text-align: left;
+        vertical-align: middle;
+    }
+
+    table th {
+        background-color: #f8f9fa;
+        font-weight: bold;
+    }
+
+    table tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+
+    
+    .avatar {
+        border-radius: 50%;
+        background-color: #007bff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+ 
+    .btn-primary {
+        background-color: #007bff;
+        border-color: #007bff;
+    }
+
+    .btn-primary:hover {
+        background-color: #0056b3;
+        border-color: #0056b3;
+    }
+</style>
+
