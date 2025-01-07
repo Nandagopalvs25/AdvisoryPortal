@@ -2,69 +2,65 @@
 {% load i18n %}
 {% block content %}
 
-
-
+<script src="https://kit.fontawesome.com/18b159aaad.js" crossorigin="anonymous"></script>
 <body class="bg-light">
 
-  <div class="container">
+  <div class="container mt-5">
 
-    <div class="p5 text-center">
-      <h1 class="display-1" >Certificates</h1>
+    <div class="p-5 text-center">
+      <h1 class="display-3">Certificates</h1>
     </div>
 
-    <div class="container pt-5">
-
-
-      <div class="row row-cols-1 row-cols-md-2 g-4">
+    <div class="container pt-3">
+      <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4">
+        
         <div class="col">
-          <div class="card">
+          <div class="card shadow-sm border-light rounded">
             <div class="card-body text-center">
-              <i class=" fa-solid fa-book-open fa-4x "> </i>
-              <h5 class="card-title pt-1">MOOC</h5>
-
-              
-              <a href="./mooc" class=" stretched-link"></a>
+              <i class="fa-solid fa-book-open fa-5x text-primary"></i>
+              <h5 class="card-title pt-2">MOOC</h5>
+              <a href="./mooc" class="stretched-link"></a>
             </div>
           </div>
         </div>
+        
+   
         <div class="col">
-          <div class="card">
-
-
+          <div class="card shadow-sm border-light rounded">
             <div class="card-body text-center">
-              <i class="fa-solid fa-briefcase fa-4x"></i>
-              <h5 class="card-title pt-1">Internship</h5>
-
-
-              <a href="./internships" class=" stretched-link"></a>
+              <i class="fa-solid fa-briefcase fa-5x text-success"></i>
+              <h5 class="card-title pt-2">Internship</h5>
+              <a href="./internships" class="stretched-link"></a>
             </div>
           </div>
         </div>
+
         <div class="col">
-          <div class="card">
-
-
+          <div class="card shadow-sm border-light rounded">
             <div class="card-body text-center">
-              <i class="fa-solid fa-medal fa-5x"></i>
-              <h5 class="card-title pt-1">Extra curriculur</h5>
-
-              <a href="./extrac" class=" stretched-link"></a>
+              <i class="fa-solid fa-medal fa-5x text-warning"></i>
+              <h5 class="card-title pt-2">Extra Curricular</h5>
+              <a href="./extrac" class="stretched-link"></a>
             </div>
           </div>
         </div>
+
+
         <div class="col">
-          <div class="card">
-
+          <div class="card shadow-sm border-light rounded">
             <div class="card-body text-center">
-              <i class="fa-solid fa-laptop-code fa-5x"></i>
-              <h5 class="card-title pt-1">Workshop</h5>
-
-              <a href="./workshops" class=" stretched-link"></a>
+              <i class="fa-solid fa-laptop-code fa-5x text-danger"></i>
+              <h5 class="card-title pt-2">Workshop</h5>
+              <a href="./workshops" class="stretched-link"></a>
             </div>
           </div>
         </div>
+
       </div>
     </div>
+
+  </div>
+
 </body>
 
 {% endblock %}

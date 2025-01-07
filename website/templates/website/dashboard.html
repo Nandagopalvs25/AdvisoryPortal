@@ -2,65 +2,56 @@
 {% load i18n %}
 {% block content %}
 
-
 <script src="https://kit.fontawesome.com/18b159aaad.js" crossorigin="anonymous"></script>
 <body class="bg-light">
 
-<div class="  container">
+<div class="container mt-5">
 
     <div class="p-5 text-center">
-        <h1 class="display-1">Dashboard</h1>
+        <h1 class="display-3">Dashboard</h1>
+    </div>
+
+    <div class="container pt-3">
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4">
+            <div class="col">
+                <div class="card shadow-sm border-light rounded">
+                    <div class="card-body text-center">
+                        <i class="fa-solid fa-upload fa-5x text-primary"></i>
+                        <h5 class="card-title pt-2">Upload Certificates</h5>
+                        <a href="/certificates/" class="stretched-link"></a>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card shadow-sm border-light rounded">
+                    <div class="card-body text-center">
+                        <i class="fa-solid fa-user-circle fa-5x text-success"></i>
+                        <h5 class="card-title pt-2">Profile</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card shadow-sm border-light rounded">
+                    <div class="card-body text-center">
+                        <i class="fa-solid fa-folder-open fa-5x text-warning"></i>
+                        <h5 class="card-title pt-2">Uploads</h5>
+                        <a href="/uploads/" class="stretched-link"></a>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card shadow-sm border-light rounded">
+                    <div class="card-body text-center">
+                        <i class="fa-solid fa-bell fa-5x text-danger"></i>
+                        <h5 class="card-title pt-2">Notifications</h5>
+                    </div>
+                </div>
+            </div>
         </div>
-        
-        <div class="container pt-3">
-        <div class="row row-cols-1 row-cols-md-2 g-4">
-            <div class="col">
-              <div class="card">
-          
-          
-                <div class="card-body text-center">
-                  <i class="fa-solid fa-file-arrow-up fa-5x"></i>
-                  <h5 class="card-title pt-1"> Upload Certificates</h5>
-                  
-                  <a href="/certificates/" class=" stretched-link"></a>
-                </div>
-              </div>
-            </div>
-            <div class="col">
-              <div class="card">
-            
-          
-                <div class="card-body text-center">
-                  <i class="fa-solid fa-user fa-5x"></i>
-                  <h5 class="card-title pt-1">Profile</h5>
-            
-                </div>
-              </div>
-            </div>
-            <div class="col">
-              <div class="card">
-                
-          
-                <div class="card-body text-center">
-                  <i class="fa-solid fa-folder fa-5x"></i>
-                  <h5 class="card-title pt-1">Uploads</h5>
-                  <a href="/uploads/" class=" stretched-link"></a>
-                 
-                </div>
-              </div>
-            </div>
-            <div class="col">
-              <div class="card">
-               
-                <div class="card-body text-center">
-                  <i class="fa-solid fa-envelope fa-5x"></i>
-                  <h5 class="card-title pt-1">Notifications</h5>
-                 
-                </div>
-              </div>
-            </div>
-          </div>
-          </div>
+    </div>
+
+</div>
+
 </body>
 
 {% endblock %}

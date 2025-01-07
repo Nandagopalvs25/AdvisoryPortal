@@ -2,45 +2,72 @@
 {% load i18n %}
 {% block content %}
 <body class="bg-light">
-<div class="container-lg pt-4 mt-1 ">
-    <h1 class="display-3">Mooc Course </h1>
+<div class="container-lg py-5">
+    <h1 class="display-4 mb-4">Mooc Course</h1>
 
-    <form   enctype="multipart/form-data" action="" method="post">
+    <form id="courseForm" enctype="multipart/form-data" action="" method="post">
         {% csrf_token %}
 
-        <div class="form-group pt-4">
-          
-            <label for="title">Course title: </label>
-            <input id="title"  class="form-control" type="text" name="title" value="{{ current_title }}" required>
-         
-        </div>
-        <div class="form-group pt-2">
-            <label for="type">Course type: </label>
-            <input id="type"  placeholder="Coursera,Nptel.." class="form-control" type="text" name="type" value="{{ current_type }}" required>
+        <div class="mb-4">
+            <label for="title" class="form-label fw-bold">Course Title</label>
+            <input id="title" class="form-control" type="text" name="title" value="{{ current_title }}" required>
         </div>
 
-        <div class="row pt-3">
-        <div class="form-group  col-sm"">
-            <label  for="start_date"> Start date: </label>
-            <input id="start_date" class="form-control" type="date" name="start_date" value="{{ current_start_date }}" required>
+        <div class="mb-4">
+            <label for="type" class="form-label fw-bold">Course Type</label>
+            <select id="type" class="form-select" name="type" required onchange="toggleOtherField()">
+                <option value="Coursera" {% if current_type == "Coursera" %}selected{% endif %}>Coursera</option>
+                <option value="Nptel" {% if current_type == "Nptel" %}selected{% endif %}>Nptel</option>
+                <option value="Other" {% if current_type != "Coursera" and current_type != "Nptel" %}selected{% endif %}>Other</option>
+            </select>
         </div>
 
-        <div class="form-group col-sm" ">
-            <label for="end_date">End date: </label>
-            <input id="end_date"  class="form-control" type="date" name="end_date" value="{{ current_end_date }}" required>
-        </div>
-        </div>
-        
-        <div class="form-group pt-4">
-            <label for="files">File: </label>
-            <input id="file" accept=".pdf"  type="file" name="files" value="{{ current_files }}" required>
+        <div id="other-field" class="mb-4" style="display: none;">
+            <label for="other_type" class="form-label fw-bold">Specify Course Type</label>
+            <input id="other_type" class="form-control" type="text" 
+                   placeholder="Enter course type">
         </div>
 
-        <div class="pt-4">
-            <button   class="btn btn-primary" type="submit">Submit</button>
+        <div class="row g-3 mb-4">
+            <div class="col-md-6">
+                <label for="start_date" class="form-label fw-bold">Start Date</label>
+                <input id="start_date" class="form-control" type="date" name="start_date" value="{{ current_start_date }}" required>
+            </div>
+            <div class="col-md-6">
+                <label for="end_date" class="form-label fw-bold">End Date</label>
+                <input id="end_date" class="form-control" type="date" name="end_date" value="{{ current_end_date }}" required>
+            </div>
+        </div>
+
+        <div class="mb-4">
+            <label for="file" class="form-label fw-bold">Upload File (PDF Only)</label>
+            <input id="file" class="form-control" accept=".pdf" type="file" name="files" value="{{ current_files }}" required>
+        </div>
+
+        <div class="d-grid">
+            <button class="btn btn-primary py-2 px-4" type="submit">Submit</button>
         </div>
     </form>
-
 </div>
+
+<script>
+    function toggleOtherField() {
+        const typeSelect = document.getElementById("type");
+        const otherField = document.getElementById("other-field");
+        const otherInput = document.getElementById("other_type");
+
+        if (typeSelect.value === "Other") {
+            otherField.style.display = "block";
+            otherInput.setAttribute("name", "type"); 
+        } else {
+            otherField.style.display = "none";
+            otherInput.removeAttribute("name"); 
+        }
+    }
+
+    document.addEventListener("DOMContentLoaded", function () {
+        toggleOtherField();
+    });
+</script>
 </body>
 {% endblock %}

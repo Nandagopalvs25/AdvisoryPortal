@@ -2,78 +2,74 @@
 {% load i18n %}
 {% block content %}
 <body class="bg-light">
-<div class="container-lg pt-4 mt-1 ">
-    <h1 class="display-3">Extracurricular / Cocurricular </h1>
+  <div class="container-lg py-5">
+    <h1 class="display-4 mb-4">Extracurricular / Cocurricular</h1>
 
     <form enctype="multipart/form-data" action="" method="post">
-        {% csrf_token %}
+      {% csrf_token %}
 
-        <div class="form-group pt-4">
+     
+      <div class="mb-4">
+        <label for="title" class="form-label fw-bold">Event Title</label>
+        <input id="title" class="form-control" type="text" name="title" value="{{ current_title }}" required>
+      </div>
 
-            <label for="title">Event title: </label>
-            <input id="title" class="form-control" type="text" name="title" value="{{ current_title }}" required>
+     
+      <div class="mb-4">
+        <label for="organiser" class="form-label fw-bold">Event Organiser</label>
+        <input id="organiser" class="form-control" type="text" name="organiser" value="{{ current_organiser }}" required>
+      </div>
 
-        </div>
-        <div class="form-group pt-2">
-            <label for="organiser">Event Organiser: </label>
-            <input id="organiser" class="form-control" type="text" name="organiser" value="{{ current_organiser }}"
-                required>
-        </div>
+    
+      <div class="mb-4">
+        <label for="date" class="form-label fw-bold">Event Date</label>
+        <input id="date" class="form-control" type="date" name="date" value="{{ current_date }}" required>
+      </div>
 
-        <div class="form-group pt-2 ">
-            <label for="date"> Event date: </label>
-            <input id="date" class="form-control" type="date" name="date" value="{{ current_date }}" required>
-        </div>
+   
+      <div class="mb-4">
+        <label for="event_type" class="form-label fw-bold">Event Type</label>
+        <select name="event_type" class="form-select" id="event_type" required>
+          <option value="Sports" {% if current_event_type == "Sports" %}selected{% endif %}>Sports</option>
+          <option value="Arts/Cultural" {% if current_event_type == "Arts/Cultural" %}selected{% endif %}>Arts/Cultural</option>
+        </select>
+      </div>
 
-        <div class="form-group pt-2">
-            <label for="event_type"> Event type: </label>
-            <select name="event_type" class="form-control" id="event_type">
-                <option value="Sports">Sports</option>
-                <option value="Arts/Cultural">Arts/Cultural</option>
-
-            </select>
-        </div>
-
-        <div class="row pt-3">
-
-            <div class=" form-group col-sm">
-                <label for="event_level"> Level of Event: </label>
-                <select name="event_level" class="form-control" id="event_level">
-                    <option value="International">International</option>
-                    <option value="National">National</option>
-                    <option value="State">State</option>
-                    <option value="Zonal">Zonal</option>
-                    <option value="College level">College level</option>
-                </select>
-            </div>
-
-            <div class=" form-group col-sm">
-                <label for="position"> Position: </label>
-                <select name="position" class="form-control" id="position">
-                    <option value="First">First</option>
-                    <option value="Second">Second</option>
-                    <option value="Third">Third</option>
-                    <option value="Special Mention">Special Mention</option>
-                    <option value="Participation only">Participation only</option>
-                   
-                </select>
-            </div>
-
+      
+      <div class="row g-3 mb-4">
+        <div class="col-md-6">
+          <label for="event_level" class="form-label fw-bold">Level of Event</label>
+          <select name="event_level" class="form-select" id="event_level" required>
+            <option value="International" {% if current_event_level == "International" %}selected{% endif %}>International</option>
+            <option value="National" {% if current_event_level == "National" %}selected{% endif %}>National</option>
+            <option value="State" {% if current_event_level == "State" %}selected{% endif %}>State</option>
+            <option value="Zonal" {% if current_event_level == "Zonal" %}selected{% endif %}>Zonal</option>
+            <option value="College level" {% if current_event_level == "College level" %}selected{% endif %}>College level</option>
+          </select>
         </div>
 
-
-
-
-        <div class="form-group pt-4">
-            <label for="files">File: </label>
-            <input id="file" accept=".pdf"  type="file" name="files" value="{{ current_files }}" required>
+        <div class="col-md-6">
+          <label for="position" class="form-label fw-bold">Position</label>
+          <select name="position" class="form-select" id="position" required>
+            <option value="First" {% if current_position == "First" %}selected{% endif %}>First</option>
+            <option value="Second" {% if current_position == "Second" %}selected{% endif %}>Second</option>
+            <option value="Third" {% if current_position == "Third" %}selected{% endif %}>Third</option>
+            <option value="Special Mention" {% if current_position == "Special Mention" %}selected{% endif %}>Special Mention</option>
+            <option value="Participation only" {% if current_position == "Participation only" %}selected{% endif %}>Participation only</option>
+          </select>
         </div>
+      </div>
 
-        <div class="pt-4">
-            <button class="btn btn-primary" type="submit">Submit</button>
-        </div>
+      <div class="mb-4">
+        <label for="file" class="form-label fw-bold">Upload File (PDF Only)</label>
+        <input id="file" class="form-control" accept=".pdf" type="file" name="files" value="{{ current_files }}" required>
+      </div>
+
+     
+      <div class="d-grid">
+        <button class="btn btn-primary py-2 px-4" type="submit">Submit</button>
+      </div>
     </form>
-
-</div>
+  </div>
 </body>
 {% endblock %}

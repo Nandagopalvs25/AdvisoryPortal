@@ -2,51 +2,55 @@
 {% load i18n %}
 {% block content %}
 
-
 <body class="bg-light">
-<div class="container-lg pt-4 mt-1 ">
-    <h1 class="display-3">Internships </h1>
+  <div class="container-lg py-5">
+    <h1 class="display-4 mb-4">Internships</h1>
 
-    <form   enctype="multipart/form-data" action="" method="post">
-        {% csrf_token %}
+    <form enctype="multipart/form-data" action="" method="post">
+      {% csrf_token %}
 
-        <div class="form-group pt-4">
-          
-            <label for="name">Name: </label>
-            <input id="name" placeholder="summer internship.." class="form-control" type="text" name="name" value="{{ current_name }}" required>
-         
-        </div>
-        <div class="form-group pt-2">
-            <label for="company">Company: </label>
-            <input id="company" class="form-control" type="text" name="company" value="{{ current_company }}" required>
-        </div>
-        <div class="form-group pt-2">
-            <label for="days">No of days: </label>
-            <input id="days" class="form-control" type="number" name="days" value="{{ current_days }}" required>
-        </div>
+    
+      <div class="mb-4">
+        <label for="name" class="form-label fw-bold">Internship Name</label>
+        <input id="name" class="form-control" type="text" name="name" value="{{ current_name }}" required>
+      </div>
 
-        <div class="row pt-3">
-        <div class="form-group  col-sm"">
-            <label  for="start_date"> Start date: </label>
-            <input id="start_date" class="form-control" type="date" name="start_date" value="{{ current_start_date }}" required>
-        </div>
+      <div class="mb-4">
+        <label for="company" class="form-label fw-bold">Company</label>
+        <input id="company" class="form-control" type="text" name="company" value="{{ current_company }}" required>
+      </div>
 
-        <div class="form-group col-sm" ">
-            <label for="end_date">End date: </label>
-            <input id="end_date"  class="form-control" type="date" name="end_date" value="{{ current_end_date }}" required>
-        </div>
-        </div>
-        
-        <div class="form-group pt-4">
-            <label for="files">File: </label>
-            <input id="file" accept=".pdf"  type="file" name="files" value="{{ current_files }}" required>
-        </div>
+     
+      <div class="mb-4">
+        <label for="days" class="form-label fw-bold">Number of Days</label>
+        <input id="days" class="form-control" type="number" name="days" value="{{ current_days }}" required>
+      </div>
 
-        <div class="pt-4">
-            <button   class="btn btn-primary" type="submit">Submit</button>
+   
+      <div class="row g-3 mb-4">
+        <div class="col-md-6">
+          <label for="start_date" class="form-label fw-bold">Start Date</label>
+          <input id="start_date" class="form-control" type="date" name="start_date" value="{{ current_start_date }}" required>
         </div>
+        <div class="col-md-6">
+          <label for="end_date" class="form-label fw-bold">End Date</label>
+          <input id="end_date" class="form-control" type="date" name="end_date" value="{{ current_end_date }}" required>
+        </div>
+      </div>
+
+    
+      <div class="mb-4">
+        <label for="file" class="form-label fw-bold">Upload File (PDF Only)</label>
+        <input id="file" class="form-control" accept=".pdf" type="file" name="files" value="{{ current_files }}" required>
+      </div>
+
+  
+      <div class="d-grid">
+        <button class="btn btn-primary py-2 px-4" type="submit">Submit</button>
+      </div>
     </form>
+  </div>
 
-</div>
 </body>
+
 {% endblock %}

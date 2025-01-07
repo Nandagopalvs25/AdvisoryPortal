@@ -19,7 +19,6 @@
               <th>Type</th>
               <th>Approval Status</th>  
               <th>Actions</th>  
-
             </tr>
           </thead>
           <tbody>
@@ -42,7 +41,7 @@
             </tr>
   
             <div class="modal fade" id="modalMOOC{{ mc.id }}" tabindex="-1" aria-labelledby="modalLabelMOOC{{ mc.id }}" aria-hidden="true">
-              <div class="modal-dialog">
+              <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                   <div class="modal-header">
                     <h5 class="modal-title" id="modalLabelMOOC{{ mc.id }}">{{ mc.course_title }} - MOOC</h5>
@@ -53,8 +52,7 @@
                     <p><strong>Start Date:</strong> {{ mc.start_date }}</p>
                     <p><strong>End Date:</strong> {{ mc.end_date }}</p>
                     <p><strong>Course ID:</strong> {{ mc.id }}</p>
-                    <p><strong>Activity Points:</strong> {{ mc.ktu_points}}</p>
-
+                    <p><strong>Activity Points:</strong> {{ mc.ktu_points }}</p>
                     <a href="{{ mc.file_url }}" class="btn btn-outline-primary btn-sm">Download/View Course</a>
                   </div>
                 </div>
@@ -80,7 +78,7 @@
             </tr>
             
             <div class="modal fade" id="modalIntern{{ mc.id }}" tabindex="-1" aria-labelledby="modalLabelIntern{{ mc.id }}" aria-hidden="true">
-              <div class="modal-dialog">
+              <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                   <div class="modal-header">
                     <h5 class="modal-title" id="modalLabelIntern{{ mc.id }}">{{ mc.name }} - Internship</h5>
@@ -91,8 +89,7 @@
                     <p><strong>Number of Days:</strong> {{ mc.no_of_days }}</p>
                     <p><strong>Start Date:</strong> {{ mc.start_date }}</p>
                     <p><strong>End Date:</strong> {{ mc.end_date }}</p>
-                    <p><strong>Activity Points:</strong> {{ mc.ktu_points}}</p>
-
+                    <p><strong>Activity Points:</strong> {{ mc.ktu_points }}</p>
                     <a href="{{ mc.file_url }}" class="btn btn-outline-primary btn-sm">Download/View Internship</a>
                   </div>
                 </div>
@@ -118,7 +115,7 @@
             </tr>
      
             <div class="modal fade" id="modalWorkshop{{ mc.id }}" tabindex="-1" aria-labelledby="modalLabelWorkshop{{ mc.id }}" aria-hidden="true">
-              <div class="modal-dialog">
+              <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                   <div class="modal-header">
                     <h5 class="modal-title" id="modalLabelWorkshop{{ mc.id }}">{{ mc.name }} - Workshop</h5>
@@ -128,8 +125,7 @@
                     <p><strong>Number of Days:</strong> {{ mc.no_of_days }}</p>
                     <p><strong>Organizer:</strong> {{ mc.organiser }}</p>
                     <p><strong>Date:</strong> {{ mc.date }}</p>
-                    <p><strong>Activity Points:</strong> {{ mc.ktu_points}}</p>
-
+                    <p><strong>Activity Points:</strong> {{ mc.ktu_points }}</p>
                     <a href="{{ mc.file_url }}" class="btn btn-outline-primary btn-sm">Download/View Workshop</a>
                   </div>
                 </div>
@@ -152,9 +148,10 @@
                 <button class="btn btn-outline-primary btn-sm me-2" data-bs-toggle="modal" data-bs-target="#modalExtrac{{ mc.id }}">View</button>
                 <a href="delete/extrac/{{ mc.id }}" class="btn btn-danger btn-sm">Delete</a>
               </td>
+            </tr>
    
             <div class="modal fade" id="modalExtrac{{ mc.id }}" tabindex="-1" aria-labelledby="modalLabelExtrac{{ mc.id }}" aria-hidden="true">
-              <div class="modal-dialog">
+              <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                   <div class="modal-header">
                     <h5 class="modal-title" id="modalLabelExtrac{{ mc.id }}">{{ mc.event_title }} - Extracurricular</h5>
@@ -166,8 +163,7 @@
                     <p><strong>Event Date:</strong> {{ mc.event_date }}</p>
                     <p><strong>Event Level:</strong> {{ mc.event_level }}</p>
                     <p><strong>Position:</strong> {{ mc.event_position }}</p>
-                    <p><strong>Activity Points:</strong> {{ mc.ktu_points}}</p>
-
+                    <p><strong>Activity Points:</strong> {{ mc.ktu_points }}</p>
                     <a href="{{ mc.file_url }}" class="btn btn-outline-primary btn-sm">Download/View Event</a>
                   </div>
                 </div>

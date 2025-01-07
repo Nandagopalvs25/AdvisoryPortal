@@ -148,7 +148,10 @@ def mooc(request):
 
         messages.success(request, "Uploaded Succesfully.")
         return HttpResponseRedirect("/")
-    return render(request, "website/mooc.html")
+    context = {
+    'current_type': 'Coursera',
+ }
+    return render(request, "website/mooc.html",context=context)
 
 
 @login_required
